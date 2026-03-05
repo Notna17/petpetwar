@@ -17,8 +17,8 @@ export const effects = {
     player.addModifier(n, modifier);
   }},
   removeModifier: (n, mod) => {
-    let reduced = n;
     return (player, opponent) => {
+    let reduced = n;
     if ((player.returnModifier('landing')?.amount || 0) > 0) { reduced += player.returnModifier('landing').amount; }
     if ((player.returnModifier(mod.key)?.amount || 0) > reduced) player.addModifier(-reduced, mod);
     else player.initModifier(mod);
