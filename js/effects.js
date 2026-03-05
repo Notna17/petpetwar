@@ -17,9 +17,10 @@ export const effects = {
     player.addModifier(n, modifier);
   }},
   removeModifier: (n, mod) => {
+    let reduced = n;
     return (player, opponent) => {
-    if ((player.returnModifier('landing')?.amount || 0) > 0) { n += player.returnModifier('landing').amount; }
-    if ((player.returnModifier(mod.key)?.amount || 0) > n) player.addModifier(-n, mod);
+    if ((player.returnModifier('landing')?.amount || 0) > 0) { reduced += player.returnModifier('landing').amount; }
+    if ((player.returnModifier(mod.key)?.amount || 0) > reduced) player.addModifier(-reduced, mod);
     else player.initModifier(mod);
   }}}
 export const cardEffects = {
